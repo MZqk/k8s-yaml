@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["59.202.31.40"],"port":32688,"protocol":"TCP","serviceName":"czjd:mosaic-nodeport","allNodes":true}]'
+    field.cattle.io/targetWorkloadIds: '["deployment:czjd:mosaic"]'
+    workload.cattle.io/targetWorkloadIdNoop: "true"
+    workload.cattle.io/workloadPortBased: "true"
+  creationTimestamp: null
+  name: mosaic-nodeport
+  ownerReferences:
+  - apiVersion: apps/v1beta2
+    controller: true
+    kind: deployment
+    name: mosaic
+    uid: 2b18d5b2-4083-11e9-84ff-00163e000729
+  selfLink: /api/v1/namespaces/czjd/services/mosaic-nodeport
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: 80tcp1
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-czjd-mosaic
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

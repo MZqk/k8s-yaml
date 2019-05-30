@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:czjd:webchat"]'
+    workload.cattle.io/targetWorkloadIdNoop: "true"
+    workload.cattle.io/workloadPortBased: "true"
+  creationTimestamp: null
+  name: webchat
+  ownerReferences:
+  - apiVersion: apps/v1beta2
+    controller: true
+    kind: deployment
+    name: webchat
+    uid: a98b5d98-0e37-11e9-9da5-00163e000729
+  selfLink: /api/v1/namespaces/czjd/services/webchat
+spec:
+  clusterIP: None
+  ports:
+  - name: default
+    port: 42
+    protocol: TCP
+    targetPort: 42
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-czjd-webchat
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

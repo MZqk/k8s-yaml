@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:czjd:web-server"]'
+    workload.cattle.io/targetWorkloadIdNoop: "true"
+    workload.cattle.io/workloadPortBased: "true"
+  creationTimestamp: null
+  name: web-server
+  ownerReferences:
+  - apiVersion: apps/v1beta2
+    controller: true
+    kind: deployment
+    name: web-server
+    uid: a538c851-4090-11e9-84ff-00163e000729
+  selfLink: /api/v1/namespaces/czjd/services/web-server
+spec:
+  clusterIP: None
+  ports:
+  - name: default
+    port: 42
+    protocol: TCP
+    targetPort: 42
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-czjd-web-server
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

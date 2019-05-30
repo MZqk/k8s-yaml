@@ -1,0 +1,17 @@
+﻿apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/creatorId: user-8q5fs
+    field.cattle.io/ingressState: '{"Y3pqZC9jempkLy8vLzgw":""}'
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+  creationTimestamp: null
+  generation: 1
+  name: czjd
+  selfLink: /apis/extensions/v1beta1/namespaces/czjd/ingresses/czjd
+spec:
+  backend:
+    serviceName: mosaic
+    servicePort: 80
+status:
+  loadBalancer: {}
